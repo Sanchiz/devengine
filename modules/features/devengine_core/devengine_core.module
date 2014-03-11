@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the devengine_core feature.
+ */
+
+include_once 'devengine_core.features.inc';
