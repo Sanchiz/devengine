@@ -23,3 +23,5 @@ projects[module_filter][version] = 2.0-alpha2
 projects[module_filter][subdir] = "contrib
 projects[date][version] = 2.0-alpha2
 projects[date][subdir] = "contrib
+projects[machine_name][version] = 1.0
+projects[machine_name][subdir] = "contrib"

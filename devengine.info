@@ -35,6 +35,8 @@ dependencies[] = token
 dependencies[] = admin_menu
 dependencies[] = module_filter
 dependencies[] = date
-
+dependencies[] = date_popup
+dependencies[] = machine_name
 
 ; Dev Engine specific modules.
+dependencies[] = devengine_core
