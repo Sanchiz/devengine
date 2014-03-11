@@ -18,6 +18,14 @@ function devengine_core_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function devengine_core_node_info() {
   $items = array(
+    'issue' => array(
+      'name' => t('Issue'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'project' => array(
       'name' => t('Project'),
       'base' => 'node_content',
