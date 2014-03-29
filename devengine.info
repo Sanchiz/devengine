@@ -4,6 +4,7 @@ core = 7.x
 
 ; Core modules.
 dependencies[] = block
+dependencies[] = book
 dependencies[] = comment
 dependencies[] = dblog
 dependencies[] = field
