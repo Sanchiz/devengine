@@ -5,3 +5,29 @@
  */
 
 include_once 'devengine_core.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function devengine_core_menu() {
+  $items = array();
+
+  $items['admin/config/devengine'] = array(
+    'title' => 'Devengine',
+    'description' => 'Dev Engine',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+  $items['admin/config/devengine/settings'] = array(
+    'title' => 'Devengine settings',
+    'description' => 'Dev Engine settings',
+    'file' => 'devengine_core.admin.inc',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('devengine_core_main_settings'),
+  );
+
+  return $items;
+}
