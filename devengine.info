@@ -38,6 +38,7 @@ dependencies[] = module_filter
 dependencies[] = date
 dependencies[] = date_popup
 dependencies[] = machine_name
+dependencies[] = entityreference
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core

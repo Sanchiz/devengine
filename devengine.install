@@ -154,4 +154,23 @@ function devengine_install() {
   db_insert('users_roles')
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
+
+
+  // Insert issue type terms.
+  $t = get_t();
+  $vocabulary = taxonomy_vocabulary_machine_name_load('issue_type');
+  $terms = array(
+    $t('Feature'),
+    $t('Bug'),
+    $t('Support'),
+    $t('Design'),
+    $t('Core Configuration'),
+  );
+
+  foreach ($terms as $term_raw) {
+    $term = new stdClass();
+    $term->vid = $vocabulary->vid;
+    $term->name = $term_raw;
+    taxonomy_term_save($term);
+  }
 }
