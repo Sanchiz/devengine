@@ -117,7 +117,7 @@ function devengine_core_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '4',
         ),
       ),
       'display' => array(),
