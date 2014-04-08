@@ -39,6 +39,8 @@ dependencies[] = date
 dependencies[] = date_popup
 dependencies[] = machine_name
 dependencies[] = entityreference
+dependencies[] = content_access
+dependencies[] = acl
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core

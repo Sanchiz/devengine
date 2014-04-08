@@ -31,3 +31,12 @@ function devengine_core_menu() {
 
   return $items;
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function devengine_preprocess_page(&$variables) {
+  if (variable_get('devengine_core_logged_access', TRUE) && user_is_anonymous() && arg(0) != 'user') {
+    drupal_goto('user');
+  }
+}

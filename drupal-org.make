@@ -25,3 +25,7 @@ projects[date][version] = 2.0-alpha2
 projects[date][subdir] = "contrib
 projects[machine_name][version] = 1.0
 projects[machine_name][subdir] = "contrib"
+projects[acl][version] = 1.0
+projects[acl][subdir] = "contrib"
+projects[content_access][version] = 1.2-beta2
+projects[content_access][subdir] = "contrib"

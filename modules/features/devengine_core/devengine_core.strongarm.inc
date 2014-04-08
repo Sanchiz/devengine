@@ -111,6 +111,21 @@ function devengine_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'content_access_project';
+  $strongarm->value = array(
+    'view_own' => array(
+      0 => 3,
+    ),
+    'view' => array(
+      0 => 3,
+    ),
+    'per_node' => 1,
+  );
+  $export['content_access_project'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__issue';
   $strongarm->value = array(
     'view_modes' => array(),
