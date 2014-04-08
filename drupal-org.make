@@ -29,3 +29,5 @@ projects[acl][version] = 1.0
 projects[acl][subdir] = "contrib"
 projects[content_access][version] = 1.2-beta2
 projects[content_access][subdir] = "contrib"
+projects[diff][version] = 3.2
+projects[diff][subdir] = "contrib"

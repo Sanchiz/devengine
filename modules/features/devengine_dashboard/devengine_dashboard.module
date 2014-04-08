@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Devengine dashboard feature.
+ */
+
+include_once 'devengine_dashboard.features.inc';

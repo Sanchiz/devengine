@@ -41,6 +41,7 @@ dependencies[] = machine_name
 dependencies[] = entityreference
 dependencies[] = content_access
 dependencies[] = acl
+dependencies[] = diff
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core
