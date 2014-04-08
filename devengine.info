@@ -45,3 +45,4 @@ dependencies[] = diff
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core
+dependencies[] = devengine_dashboard
