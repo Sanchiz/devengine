@@ -1,0 +1,30 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the devengine_wiki module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function devengine_wiki_schema() {
+  $schema['devengine_wiki'] = array(
+    'description' => 'Stores book node ids for projects.',
+    'fields' => array(
+      'project_id' => array(
+        'description' => 'The project id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'book_id' => array(
+        'description' => 'The book id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('project_id', 'book_id'),
+  );
+  return $schema;
+}

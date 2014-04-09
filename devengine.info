@@ -4,7 +4,6 @@ core = 7.x
 
 ; Core modules.
 dependencies[] = block
-dependencies[] = book
 dependencies[] = comment
 dependencies[] = dblog
 dependencies[] = field
@@ -46,3 +45,4 @@ dependencies[] = diff
 ; Dev Engine specific modules.
 dependencies[] = devengine_core
 dependencies[] = devengine_dashboard
+dependencies[] = devengine_wiki

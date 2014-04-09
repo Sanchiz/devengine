@@ -1,0 +1,85 @@
+<?php
+/**
+ * @file
+ * Code for the Devengine wiki feature.
+ */
+
+include_once 'devengine_wiki.features.inc';
+
+/**
+ * Implements hook_node_insert().
+ */
+function devengine_wiki_node_insert($node) {
+  // Create wiki page for project.
+  if ($node->type == 'project') {
+    devengine_wiki_project_created($node);
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function devengine_wiki_node_delete($node) {
+  // Remove wiki for project.
+  if ($node->type == 'project') {
+    $config = devengine_wiki_load_config($node->nid);
+    node_delete($config['book_id']);
+    devengine_wiki_remove_config($node->nid);
+  }
+}
+
+/**
+ * Helper which creates book for project.
+ */
+function devengine_wiki_project_created($project) {
+  // Create top level book project.
+  global $user;
+  $node = new stdClass();
+  $node->title = $project->title . ' ' . t('wiki');
+  $node->type = 'book';
+  node_object_prepare($node);
+  $node->language = LANGUAGE_NONE;
+  $node->uid = $user->uid;
+  $node->status = 1;
+  $node->comment = 0;
+  $node->book = array('bid' => 'new', 'plid' => 0);
+  node_save($node);
+
+  // Insert record to database with matching between project and book.
+  devengine_wiki_insert_wiki($project->nid, $node->nid);
+}
+
+/**
+ * Insert record to devengine_wiki table.
+ */
+function devengine_wiki_insert_wiki($project_id, $book_id) {
+  db_merge('devengine_wiki')
+    ->key(array('project_id' => $project_id, 'book_id' => $book_id))
+    ->fields(
+      array(
+        'project_id' => $project_id,
+        'book_id' => $book_id,
+      )
+    )
+    ->execute();
+}
+
+/**
+ * Return config for project.
+ */
+function devengine_wiki_load_config($project_id) {
+  return db_select('devengine_wiki', 'w')
+    ->fields('w', array('project_id', 'book_id'))
+    ->condition('w.project_id', $project_id)
+    ->execute()
+    ->fetchAssoc();
+}
+
+/**
+ * Remove wiki config.
+ */
+function devengine_wiki_remove_config($project_id) {
+  db_delete('devengine_wiki')
+    ->condition('project_id', $project_id)
+    ->execute();
+}
