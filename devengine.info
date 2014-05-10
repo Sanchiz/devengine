@@ -41,6 +41,8 @@ dependencies[] = entityreference
 dependencies[] = content_access
 dependencies[] = acl
 dependencies[] = diff
+dependencies[] = context
+dependencies[] = pathauto
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core

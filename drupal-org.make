@@ -31,3 +31,7 @@ projects[content_access][version] = 1.2-beta2
 projects[content_access][subdir] = "contrib"
 projects[diff][version] = 3.2
 projects[diff][subdir] = "contrib"
+projects[context][version] = 3.2
+projects[context][subdir] = "contrib"
+projects[pathauto][version] = 1.2
+projects[pathauto][subdir] = "contrib"

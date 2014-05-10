@@ -45,6 +45,13 @@ function devengine_wiki_project_created($project) {
   $node->book = array('bid' => 'new', 'plid' => 0);
   node_save($node);
 
+  // Create alias for wiki page.
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => 'projects/' . $project->nid . '/wiki',
+  );
+  path_save($path);
+
   // Insert record to database with matching between project and book.
   devengine_wiki_insert_wiki($project->nid, $node->nid);
 }
@@ -81,5 +88,25 @@ function devengine_wiki_load_config($project_id) {
 function devengine_wiki_remove_config($project_id) {
   db_delete('devengine_wiki')
     ->condition('project_id', $project_id)
+    ->execute();
+}
+
+/**
+ * Return config for book.
+ */
+function devengine_wiki_load_book_config($book_id) {
+  return db_select('devengine_wiki', 'w')
+    ->fields('w', array('project_id', 'book_id'))
+    ->condition('w.book_id', $book_id)
+    ->execute()
+    ->fetchAssoc();
+}
+
+/**
+ * Remove book config.
+ */
+function devengine_wiki_remove_book_config($book_id) {
+  db_delete('devengine_wiki')
+    ->condition('book_id', $book_id)
     ->execute();
 }

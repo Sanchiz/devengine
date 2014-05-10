@@ -232,5 +232,40 @@ function devengine_core_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_project'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_book_pattern';
+  $strongarm->value = 'projects/PROJECT_ID/wiki/[node:nid]';
+  $export['pathauto_node_book_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_issue_pattern';
+  $strongarm->value = 'projects/PROJECT_ID/issue/[node:nid]';
+  $export['pathauto_node_issue_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_page_pattern';
+  $strongarm->value = 'devengine/[node:title]';
+  $export['pathauto_node_page_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_project_pattern';
+  $strongarm->value = 'projects/[node:nid]';
+  $export['pathauto_node_project_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_frontpage';
+  $strongarm->value = 'projects';
+  $export['site_frontpage'] = $strongarm;
+
   return $export;
 }

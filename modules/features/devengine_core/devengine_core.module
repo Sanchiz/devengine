@@ -40,3 +40,67 @@ function devengine_preprocess_page(&$variables) {
     drupal_goto('user');
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function devengine_core_block_info() {
+  $blocks['devengine_core_project_menu'] = array(
+    'info' => t('Devengine core: Project menu'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function devengine_core_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'devengine_core_project_menu':
+      $block['subject'] = t('Project menu');
+      $block['content'] = devengine_core_project_menu_markup();
+      break;
+
+  }
+
+  return $block;
+}
+
+/**
+ * Markup for devengine_core_project_menu.
+ */
+function devengine_core_project_menu_markup() {
+  // @TODO need a way to add links via UI.
+  $nid = arg(1);
+  $build_menu = FALSE;
+  if (!empty($nid) && is_numeric($nid)) {
+    $node_arg = node_load($nid);
+    if ($node_arg->type == 'project') {
+      $build_menu = TRUE;
+      $node = $node_arg;
+    }
+
+    if ($node_arg->type == 'book') {
+      if (!empty($node_arg->book['bid'])) {
+        $wiki_config = devengine_wiki_load_book_config($node_arg->book['bid']);
+        if (!empty($wiki_config['project_id'])) {
+          $node = node_load($wiki_config['project_id']);
+          $build_menu = TRUE;
+        }
+      }
+    }
+  }
+
+  if ($build_menu && $node) {
+    $items = array();
+    $items[] = l(t('Issues'), 'projects/' . $node->nid . '/issues');
+    $items[] = l(t('New issue'), 'projects/' . $node->nid . '/new-issue');
+    $items[] = l(t('Latest Activity'), 'projects/' . $node->nid . '/activity');
+    $items[] = l(t('Wiki'), 'projects/' . $node->nid . '/wiki');
+    $items[] = l(t('Repository'), 'projects/' . $node->nid . '/repository');
+    return theme('item_list', array('items' => $items));
+  }
+  return FALSE;
+}
