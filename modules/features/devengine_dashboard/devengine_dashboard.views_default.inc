@@ -54,6 +54,7 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['fields']['field_issue_assigned']['id'] = 'field_issue_assigned';
   $handler->display->display_options['fields']['field_issue_assigned']['table'] = 'field_data_field_issue_assigned';
   $handler->display->display_options['fields']['field_issue_assigned']['field'] = 'field_issue_assigned';
+  $handler->display->display_options['fields']['field_issue_assigned']['empty'] = 'No specified';
   $handler->display->display_options['fields']['field_issue_assigned']['settings'] = array(
     'link' => 0,
   );
@@ -61,10 +62,12 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['fields']['field_issue_done']['id'] = 'field_issue_done';
   $handler->display->display_options['fields']['field_issue_done']['table'] = 'field_data_field_issue_done';
   $handler->display->display_options['fields']['field_issue_done']['field'] = 'field_issue_done';
+  $handler->display->display_options['fields']['field_issue_done']['empty'] = '0 %';
   /* Field: Content: Estimate */
   $handler->display->display_options['fields']['field_issue_estimate']['id'] = 'field_issue_estimate';
   $handler->display->display_options['fields']['field_issue_estimate']['table'] = 'field_data_field_issue_estimate';
   $handler->display->display_options['fields']['field_issue_estimate']['field'] = 'field_issue_estimate';
+  $handler->display->display_options['fields']['field_issue_estimate']['empty'] = 'No specified';
   $handler->display->display_options['fields']['field_issue_estimate']['settings'] = array(
     'thousand_separator' => ' ',
     'decimal_separator' => '.',
@@ -75,6 +78,7 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['fields']['field_issue_priority']['id'] = 'field_issue_priority';
   $handler->display->display_options['fields']['field_issue_priority']['table'] = 'field_data_field_issue_priority';
   $handler->display->display_options['fields']['field_issue_priority']['field'] = 'field_issue_priority';
+  $handler->display->display_options['fields']['field_issue_priority']['empty'] = 'No specified';
   /* Field: Content: Start date */
   $handler->display->display_options['fields']['field_issue_start_date']['id'] = 'field_issue_start_date';
   $handler->display->display_options['fields']['field_issue_start_date']['table'] = 'field_data_field_issue_start_date';
@@ -144,16 +148,84 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'Project id';
+  $handler->display->display_options['fields']['nid']['link_to_node'] = TRUE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['label'] = 'Project name';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Short name */
+  $handler->display->display_options['fields']['field_project_machine_name']['id'] = 'field_project_machine_name';
+  $handler->display->display_options['fields']['field_project_machine_name']['table'] = 'field_data_field_project_machine_name';
+  $handler->display->display_options['fields']['field_project_machine_name']['field'] = 'field_project_machine_name';
+  $handler->display->display_options['fields']['field_project_machine_name']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_project_machine_name']['alter']['path'] = 'node/[nid]';
+  /* Field: Content: Client */
+  $handler->display->display_options['fields']['field_project_client']['id'] = 'field_project_client';
+  $handler->display->display_options['fields']['field_project_client']['table'] = 'field_data_field_project_client';
+  $handler->display->display_options['fields']['field_project_client']['field'] = 'field_project_client';
+  $handler->display->display_options['fields']['field_project_client']['empty'] = 'Not specified';
+  $handler->display->display_options['fields']['field_project_client']['settings'] = array(
+    'link' => 1,
+  );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_1']['id'] = 'nothing_1';
+  $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_1']['label'] = 'View link';
+  $handler->display->display_options['fields']['nothing_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = 'View';
+  $handler->display->display_options['fields']['nothing_1']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing_1']['alter']['path'] = 'projects/[nid]';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
+  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_2']['label'] = 'Issues link';
+  $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = 'Issues';
+  $handler->display->display_options['fields']['nothing_2']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing_2']['alter']['path'] = 'projects/[nid]/issues';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_3']['id'] = 'nothing_3';
+  $handler->display->display_options['fields']['nothing_3']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_3']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_3']['label'] = 'New issue link';
+  $handler->display->display_options['fields']['nothing_3']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing_3']['alter']['text'] = 'New issue';
+  $handler->display->display_options['fields']['nothing_3']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing_3']['alter']['path'] = 'projects/[nid]/new-issue';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Operations';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[nothing_1] | [nothing_2] | [nothing_3]';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

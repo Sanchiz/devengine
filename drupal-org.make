@@ -35,3 +35,5 @@ projects[context][version] = 3.2
 projects[context][subdir] = "contrib"
 projects[pathauto][version] = 1.2
 projects[pathauto][subdir] = "contrib"
+projects[field_group][version] = 1.3
+projects[field_group][subdir] = "contrib"

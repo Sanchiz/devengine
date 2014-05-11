@@ -28,6 +28,16 @@ function devengine_core_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('devengine_core_main_settings'),
   );
+  $items['projects/%node/new-issue'] = array(
+    'title' => 'New issue',
+    'title callback' => 'devengine_core_new_issue_title_callback',
+    'title arguments' => array(1),
+    'access arguments' => array('create issue content'),
+    'page callback' => 'devengine_core_new_issue_callback',
+    'page arguments' => array(1),
+    'file path' => drupal_get_path('module', 'node'),
+    'file' => 'node.pages.inc',
+  );
 
   return $items;
 }
@@ -77,12 +87,12 @@ function devengine_core_project_menu_markup() {
   $build_menu = FALSE;
   if (!empty($nid) && is_numeric($nid)) {
     $node_arg = node_load($nid);
-    if ($node_arg->type == 'project') {
+    if (!empty($node_arg->type) && $node_arg->type == 'project') {
       $build_menu = TRUE;
       $node = $node_arg;
     }
 
-    if ($node_arg->type == 'book') {
+    if (!empty($node_arg->type) && $node_arg->type == 'book') {
       if (!empty($node_arg->book['bid'])) {
         $wiki_config = devengine_wiki_load_book_config($node_arg->book['bid']);
         if (!empty($wiki_config['project_id'])) {
@@ -97,10 +107,40 @@ function devengine_core_project_menu_markup() {
     $items = array();
     $items[] = l(t('Issues'), 'projects/' . $node->nid . '/issues');
     $items[] = l(t('New issue'), 'projects/' . $node->nid . '/new-issue');
-    $items[] = l(t('Latest Activity'), 'projects/' . $node->nid . '/activity');
+    // @TODO latest activity.
+    //$items[] = l(t('Latest Activity'), 'projects/' . $node->nid . '/activity');
     $items[] = l(t('Wiki'), 'projects/' . $node->nid . '/wiki');
-    $items[] = l(t('Repository'), 'projects/' . $node->nid . '/repository');
+    //$items[] = l(t('Repository'), 'projects/' . $node->nid . '/repository');
     return theme('item_list', array('items' => $items));
   }
   return FALSE;
+}
+
+/**
+ * Title callback for new issue page.
+ */
+function devengine_core_new_issue_title_callback($project) {
+
+}
+
+/**
+ * Page callback for new issue page.
+ */
+function devengine_core_new_issue_callback($project) {
+  global $user;
+  $type = 'issue';
+  $form_id = $type . '_node_form';
+  $node = new stdClass();
+  $node->uid = $user->uid;
+  $node->type = $type;
+  $node->language = LANGUAGE_NONE;
+
+  // Set project from context.
+  $node->field_issue_project[LANGUAGE_NONE][0]['target_id'] = $project->nid;
+  node_object_prepare($node);
+  $form = drupal_get_form($form_id, $node);
+  $form['field_issue_project']['#access'] = FALSE;
+
+  // @TODO node author.
+  return render($form);
 }
