@@ -150,11 +150,13 @@ function devengine_install() {
   variable_set('node_admin_theme', 1);
   variable_set('admin_theme', 'seven');
 
+  // Set default theme.
+  variable_set('theme_default', 'thedevengine');
+
   // Assign user 1 the "administrator" role.
   db_insert('users_roles')
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
-
 
   // Insert issue type terms.
   $t = get_t();

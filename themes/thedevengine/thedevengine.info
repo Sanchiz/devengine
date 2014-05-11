@@ -1,0 +1,32 @@
+name = The Dev Engine
+description = Theme of engine for development team.
+base theme = omega
+screenshot = screenshot.png
+engine = phptemplate
+core = 7.x
+
+; ========================================
+; Stylesheets
+; ========================================
+stylesheets[all][] = css/thedevengine.normalize.css
+stylesheets[all][] = css/thedevengine.hacks.css
+stylesheets[all][] = css/thedevengine.styles.css
+stylesheets[all][] = css/thedevengine.no-query.css
+
+; ========================================
+; Scripts
+; ========================================
+scripts[] = js/thedevengine.behaviors.js
+
+; ========================================
+; Regions
+; ========================================
+regions[branding] = Branding
+regions[header] = Header
+regions[navigation] = Navigation
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[content] = Content
+regions[sidebar_first] = First Sidebar
+regions[sidebar_second] = Second Sidebar
+regions[footer] = Footer
