@@ -355,7 +355,7 @@ function devengine_core_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 8,
+      'weight' => 13,
     ),
   );
 

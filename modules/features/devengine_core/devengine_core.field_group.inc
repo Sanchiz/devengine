@@ -28,9 +28,10 @@ function devengine_core_field_group_info() {
       2 => 'field_issue_estimate',
       3 => 'field_issue_priority',
       4 => 'field_issue_project',
-      5 => 'field_issue_status',
-      6 => 'field_issue_type',
-      7 => 'title',
+      5 => 'field_issue_start_date',
+      6 => 'field_issue_status',
+      7 => 'field_issue_type',
+      8 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

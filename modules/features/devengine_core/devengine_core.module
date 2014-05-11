@@ -144,3 +144,91 @@ function devengine_core_new_issue_callback($project) {
   // @TODO node author.
   return render($form);
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function devengine_core_form_comment_node_issue_form_alter(&$form, $form_state) {
+  // Hide visible fields on the comment form in order to "remove" it. We can't
+  // actually obliterate the form entirely because of $form_state assumptions.
+  $form['comment_body']['#access'] = FALSE;
+  $form['actions']['#access'] = FALSE;
+  $form['author']['#access'] = FALSE;
+
+  // Add a property to the issue to tell if we're in an embedded form or not.
+  $issue = $form['#node'];
+  $issue->embed_issue_form = TRUE;
+  $content = !empty($issue->content) ? $issue->content : FALSE;
+  form_load_include($form_state, 'inc', 'node', 'node.pages');
+  // Render the issue edit form in place of the comment form.
+  $issue_form = drupal_get_form('issue_node_form', $issue);
+  $form['#suffix'] = render($issue_form);
+
+  if (!empty($content)) {
+    $issue->content = $content;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function devengine_core_form_issue_node_form_alter(&$form, $form_state) {
+  if (!empty($form['#node']->embed_issue_form)) {
+    $issue = $form['#node'];
+    $form['additional_settings']['#access'] = FALSE;
+    $form['body']['#access'] = FALSE;
+    $form['field_issue_files'][$issue->language]['#collapsible'] = TRUE;
+    $form['field_issue_files'][$issue->language]['#collapsed'] = TRUE;
+    $form['field_issue_files'][$issue->language]['#process'][] = 'form_process_fieldset';
+    $form['field_issue_files'][$issue->language]['#title'] = t('Files');
+
+    $form['#groups']['group_issue_matadata']->format_settings['formatter'] = 'collapsed';
+
+    $form['comment_body'] = array(
+      '#type' => 'text_format',
+      '#title' => t('Comment'),
+      '#format' => 'filtered_html',
+      '#weight' => 0,
+    );
+
+    $form['actions']['delete']['#access'] = FALSE;
+    $form['actions']['preview_changes']['#access'] = FALSE;
+    $form['actions']['preview']['#access'] = FALSE;
+    $form['#submit'][] = 'devengine_core_issue_comment_form_submit';
+  }
+}
+
+/**
+ * Submit callback for comment form.
+ */
+function devengine_core_issue_comment_form_submit(&$form, &$form_state) {
+  // Add comment.
+  global $user;
+  $node = $form_state['node'];
+  if (!empty($form_state['values']['comment_body']['value'])) {
+    $form_state['values']['comment_body']['format'];
+    $comment = (object) array(
+      'nid' => $node->nid,
+      'cid' => 0,
+      'pid' => 0,
+      'uid' => $user->uid,
+      'mail' => $user->mail,
+      'is_anonymous' => 0,
+      'homepage' => '',
+      'subject' => '',
+      'status' => COMMENT_PUBLISHED,
+      'language' => LANGUAGE_NONE,
+      'comment_body' => array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'value' => $form_state['values']['comment_body']['value'],
+            'format' => $form_state['values']['comment_body']['format'],
+          ),
+        ),
+      ),
+    );
+    comment_submit($comment);
+    comment_save($comment);
+  }
+  // @TODO clear messages.
+}
