@@ -292,14 +292,14 @@ function devengine_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_book_pattern';
-  $strongarm->value = 'projects/PROJECT_ID/wiki/[node:nid]';
+  $strongarm->value = 'projects/[node:project_id]/wiki/[node:nid]';
   $export['pathauto_node_book_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_issue_pattern';
-  $strongarm->value = 'projects/PROJECT_ID/issue/[node:nid]';
+  $strongarm->value = 'projects/[node:project_id]/issue/[node:nid]';
   $export['pathauto_node_issue_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
