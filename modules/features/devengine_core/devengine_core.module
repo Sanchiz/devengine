@@ -232,3 +232,43 @@ function devengine_core_issue_comment_form_submit(&$form, &$form_state) {
   }
   // @TODO clear messages.
 }
+
+/**
+ * Implements hook_token_info().
+ */
+function devengine_core_token_info() {
+  $tokens['project_id'] = array(
+    'name' => t('Project id'),
+    'description' => t('project if of issue and wiki page.'),
+  );
+  return array(
+    'tokens' => array('node' => $tokens),
+  );
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function devengine_core_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+    foreach ($tokens as $name => $original) {
+      if ($name == 'project_id') {
+        $project_id = FALSE;
+        if ($node->type == 'issue' && !empty($node->field_issue_project[LANGUAGE_NONE][0]['target_id'])) {
+          $project_id = $node->field_issue_project[LANGUAGE_NONE][0]['target_id'];
+        }
+        if ($node->type == 'book' && !empty($node->book['bid'])) {
+          $wiki_config = devengine_wiki_load_book_config($node->book['bid']);
+          if (!empty($wiki_config['project_id'])) {
+            $project_id = $wiki_config['project_id'];
+          }
+
+        }
+        $replacements[$original] = $project_id;
+      }
+    }
+  }
+  return $replacements;
+}
