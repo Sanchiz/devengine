@@ -77,3 +77,71 @@ h6 {
 /* line 1, ../sass/components/_body.scss */
 body {
   background: transparent url('../images/diagonal.png?1399829237') left top repeat; }
+
+/* line 1, ../sass/components/_layouts.scss */
+.l-constrained, header.l-header .l-region--header {
+  width: 75%;
+  margin: 0 auto;
+  *zoom: 1; }
+  /* line 38, ../../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.0.alpha.16/stylesheets/compass/utilities/general/_clearfix.scss */
+  .l-constrained:after, header.l-header .l-region--header:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+/* Header */
+/* line 8, ../sass/components/_layouts.scss */
+header.l-header {
+  background-color: #222222; }
+
+/* line 1, ../sass/components/blocks/_devengine-core-project-menu.scss */
+#block-devengine-core-devengine-core-project-menu {
+  width: 49.15254%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 0%;
+  clear: none;
+  margin-top: 20px; }
+  /* line 4, ../sass/components/blocks/_devengine-core-project-menu.scss */
+  #block-devengine-core-devengine-core-project-menu .block__title {
+    display: none; }
+  /* line 8, ../sass/components/blocks/_devengine-core-project-menu.scss */
+  #block-devengine-core-devengine-core-project-menu ul li {
+    float: left;
+    list-style: none; }
+    /* line 11, ../sass/components/blocks/_devengine-core-project-menu.scss */
+    #block-devengine-core-devengine-core-project-menu ul li a {
+      border-top: 5px solid #333333;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 2px 20px; }
+      /* line 17, ../sass/components/blocks/_devengine-core-project-menu.scss */
+      #block-devengine-core-devengine-core-project-menu ul li a:hover {
+        border-top: 5px solid #29aae1; }
+
+/* line 1, ../sass/components/blocks/_system-user-menu.scss */
+#block-system-user-menu {
+  width: 49.15254%;
+  float: right;
+  margin-left: 0;
+  margin-right: 0;
+  clear: none;
+  margin: 20px 0; }
+  /* line 4, ../sass/components/blocks/_system-user-menu.scss */
+  #block-system-user-menu .block__title {
+    display: none; }
+  /* line 8, ../sass/components/blocks/_system-user-menu.scss */
+  #block-system-user-menu ul li {
+    float: left;
+    list-style: none; }
+    /* line 11, ../sass/components/blocks/_system-user-menu.scss */
+    #block-system-user-menu ul li a {
+      border-top: 5px solid #333333;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 2px 20px; }
+      /* line 17, ../sass/components/blocks/_system-user-menu.scss */
+      #block-system-user-menu ul li a:hover {
+        border-top: 5px solid #29aae1; }

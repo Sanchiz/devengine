@@ -1,0 +1,13 @@
+.l-constrained {
+  width: 75%;
+  margin: 0 auto;
+  @include pie-clearfix;
+}
+
+/* Header */
+header.l-header {
+  background-color: $black;
+  .l-region--header {
+    @extend .l-constrained;
+  }
+}

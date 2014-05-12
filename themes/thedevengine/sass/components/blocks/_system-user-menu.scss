@@ -1,0 +1,23 @@
+#block-system-user-menu {
+  @include grid-span(6, 7);
+  margin: 20px 0;
+  .block__title {
+    display: none;
+  }
+  ul {
+    li {
+      float: left;
+      list-style: none;
+      a {
+        border-top: 5px solid $light-black;
+        color: $white;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 2px 20px;
+        &:hover {
+          border-top: 5px solid $light-blue;
+        }
+      }
+    }
+  }
+}
