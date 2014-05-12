@@ -1,0 +1,41 @@
+/**
+ * $FONT-FACE
+ */
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,700);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic);
+@include establish-baseline($base-font-size);
+
+/**
+ * $BASE-TYPOGRAPHY
+ */
+html {
+  font-family: $pt-sans;
+  color: $black;
+}
+
+a {
+  @include link-colors($light-blue, #000, $light-blue, $light-blue, #000);
+}
+
+/**
+ * $HEADINGS
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $light-black;
+  font-family: $maven-pro;
+  text-transform: uppercase;
+
+  a,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $light-blue;
+  }
+}
