@@ -83,3 +83,4 @@ features[variable][] = pathauto_node_issue_pattern
 features[variable][] = pathauto_node_page_pattern
 features[variable][] = pathauto_node_project_pattern
 features[variable][] = site_frontpage
+features[variable][] = theme_thedevengine_settings
