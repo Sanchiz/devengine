@@ -11,3 +11,9 @@ header.l-header {
     @extend .l-constrained;
   }
 }
+
+.l-main {
+  @extend .l-constrained;
+  .l-content {
+  }
+}
