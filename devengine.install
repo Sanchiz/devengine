@@ -151,7 +151,6 @@ function devengine_install() {
   variable_set('admin_theme', 'seven');
 
   // Set default theme.
-
   theme_enable(array('thedevengine'));
   variable_set('theme_default', 'thedevengine');
 
@@ -177,4 +176,7 @@ function devengine_install() {
     $term->name = $term_raw;
     taxonomy_term_save($term);
   }
+
+  // Rebuild node access.
+  node_access_rebuild(TRUE);
 }
