@@ -70,7 +70,7 @@
  * @see omega_preprocess_page()
  */
 ?>
-<div class="l-page">
+<div<?php print $attributes; ?>>
   <header class="l-header" role="banner">
     <div class="l-branding">
       <?php if ($logo): ?>

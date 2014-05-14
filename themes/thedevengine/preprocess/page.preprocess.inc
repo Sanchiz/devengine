@@ -4,6 +4,20 @@
  * Implements hook_preprocess_page().
  */
 function thedevengine_preprocess_page(&$variables) {
-  // You can use preprocess hooks to modify the variables before they are passed
-  // to the theme function or template file.
+  // Added classes layout.
+  $variables['classes_array'][] = 'l-page';
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $variables['classes_array'][] = 'two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first'])) {
+    $variables['classes_array'][] = 'one-sidebar';
+    $variables['classes_array'][] = 'sidebar-first';
+  }
+  elseif (!empty($variables['page']['sidebar_second'])) {
+    $variables['classes_array'][] = 'one-sidebar';
+    $variables['classes_array'][] = 'sidebar-second';
+  }
+  else {
+    $variables['classes_array'][] = 'no-sidebars';
+  }
 }
