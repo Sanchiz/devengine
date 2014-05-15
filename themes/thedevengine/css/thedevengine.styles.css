@@ -118,6 +118,62 @@ body {
 header.l-header {
   background-color: #222222; }
 
+/* line 20, ../sass/components/_layouts.scss */
+.l-page.no-sidebars .l-content {
+  width: 100%; }
+
+/* line 26, ../sass/components/_layouts.scss */
+.l-page.one-sidebar.sidebar-second .l-content {
+  width: 74.57627%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 0%;
+  clear: none; }
+/* line 29, ../sass/components/_layouts.scss */
+.l-page.one-sidebar.sidebar-second .l-region--sidebar-second {
+  width: 23.72881%;
+  float: right;
+  margin-left: 0;
+  margin-right: 0;
+  clear: none; }
+
+/* line 35, ../sass/components/_layouts.scss */
+.l-page.one-sidebar.sidebar-first .l-region--sidebar-first {
+  width: 23.72881%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 0%;
+  clear: none; }
+/* line 38, ../sass/components/_layouts.scss */
+.l-page.one-sidebar.sidebar-first .l-content {
+  width: 74.57627%;
+  float: right;
+  margin-left: 0;
+  margin-right: 0;
+  clear: none; }
+
+/* line 44, ../sass/components/_layouts.scss */
+.l-page.two-sidebars .l-region--sidebar-first {
+  width: 23.72881%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 0%;
+  clear: none; }
+/* line 47, ../sass/components/_layouts.scss */
+.l-page.two-sidebars .l-content {
+  width: 49.15254%;
+  float: left;
+  margin-right: -100%;
+  margin-left: 25.42373%;
+  clear: none; }
+/* line 50, ../sass/components/_layouts.scss */
+.l-page.two-sidebars .l-region--sidebar-second {
+  width: 23.72881%;
+  float: right;
+  margin-left: 0;
+  margin-right: 0;
+  clear: none; }
+
 /* line 1, ../sass/components/blocks/_devengine-core-project-menu.scss */
 #block-devengine-core-devengine-core-project-menu {
   width: 49.15254%;

@@ -14,6 +14,40 @@ header.l-header {
 
 .l-main {
   @extend .l-constrained;
+}
+
+.l-page.no-sidebars {
   .l-content {
+    width: 100%;
+  }
+}
+
+.l-page.one-sidebar.sidebar-second {
+  .l-content {
+    @include grid-span(9, 1);
+  }
+  .l-region--sidebar-second {
+    @include grid-span(3, 10);
+  }
+}
+
+.l-page.one-sidebar.sidebar-first {
+  .l-region--sidebar-first {
+    @include grid-span(3, 1);
+  }
+  .l-content {
+    @include grid-span(9, 4);
+  }
+}
+
+.l-page.two-sidebars {
+  .l-region--sidebar-first {
+    @include grid-span(3, 1);
+  }
+  .l-content {
+    @include grid-span(6, 4);
+  }
+  .l-region--sidebar-second {
+    @include grid-span(3, 10);
   }
 }

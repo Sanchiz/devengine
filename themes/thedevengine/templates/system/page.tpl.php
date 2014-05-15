@@ -97,6 +97,7 @@
   </header>
 
   <div class="l-main">
+    <?php print render($page['sidebar_first']); ?>
     <div class="l-content" role="main">
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
@@ -115,8 +116,6 @@
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div>
-
-    <?php print render($page['sidebar_first']); ?>
     <?php print render($page['sidebar_second']); ?>
   </div>
 
