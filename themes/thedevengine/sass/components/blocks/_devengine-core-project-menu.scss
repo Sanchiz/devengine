@@ -1,10 +1,11 @@
 #block-devengine-core-devengine-core-project-menu {
-  @include grid-span(6, 1);
+  @include grid-span(6, 7);
   margin-top: 20px;
   .block__title {
     display: none;
   }
   ul {
+    float: right;
     li {
       float: left;
       list-style: none;

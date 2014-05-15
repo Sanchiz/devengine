@@ -1,11 +1,11 @@
 #block-system-user-menu {
-  @include grid-span(6, 7);
+  @include grid-span(6, 1);
   margin: 20px 0;
   .block__title {
     display: none;
   }
   ul {
-    float: right;
+    padding: 0;
     li {
       float: left;
       list-style: none;

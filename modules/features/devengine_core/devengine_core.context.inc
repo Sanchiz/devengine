@@ -26,15 +26,15 @@ function devengine_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'devengine_core-devengine_core_project_menu' => array(
-          'module' => 'devengine_core',
-          'delta' => 'devengine_core_project_menu',
-          'region' => 'header',
-          'weight' => '-10',
-        ),
         'system-user-menu' => array(
           'module' => 'system',
           'delta' => 'user-menu',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+        'devengine_core-devengine_core_project_menu' => array(
+          'module' => 'devengine_core',
+          'delta' => 'devengine_core_project_menu',
           'region' => 'header',
           'weight' => '-9',
         ),
