@@ -29,7 +29,10 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '40';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
@@ -134,6 +137,32 @@ function devengine_dashboard_views_default_views() {
   $handler = $view->new_display('page', 'Issues page', 'page');
   $handler->display->display_options['display_description'] = 'Displays available issues for project.';
   $handler->display->display_options['path'] = 'projects/%/issues';
+
+  /* Display: Issues block */
+  $handler = $view->new_display('block', 'Issues block', 'issues_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Latest issues';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'More >';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Project (field_issue_project) */
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['id'] = 'field_issue_project_target_id';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['table'] = 'field_data_field_issue_project';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['field'] = 'field_issue_project_target_id';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_issue_project_target_id']['summary_options']['items_per_page'] = '25';
   $export['issues_dashboard'] = $view;
 
   $view = new view();
