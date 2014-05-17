@@ -1,6 +1,6 @@
 ; devengine demo make file
 api = 2
-core = 7.23
+core = 7.28
 
 ; Contributed modules.
 projects[views][version] = 3.7
