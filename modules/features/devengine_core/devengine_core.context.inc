@@ -13,6 +13,41 @@ function devengine_core_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'devengine_project';
+  $context->description = '';
+  $context->tag = 'devengine';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'project' => 'project',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-issues_dashboard-issues_block' => array(
+          'module' => 'views',
+          'delta' => 'issues_dashboard-issues_block',
+          'region' => 'content',
+          'weight' => '1',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('devengine');
+  $export['devengine_project'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'devengine_sitewide';
   $context->description = '';
   $context->tag = 'devengine';
