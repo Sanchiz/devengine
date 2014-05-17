@@ -136,6 +136,96 @@ function devengine_dashboard_views_default_views() {
   /* Display: Issues page */
   $handler = $view->new_display('page', 'Issues page', 'page');
   $handler->display->display_options['display_description'] = 'Displays available issues for project.';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'issue' => 'issue',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'word';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    4 => 0,
+    5 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: Status (field_issue_status) */
+  $handler->display->display_options['filters']['field_issue_status_value']['id'] = 'field_issue_status_value';
+  $handler->display->display_options['filters']['field_issue_status_value']['table'] = 'field_data_field_issue_status';
+  $handler->display->display_options['filters']['field_issue_status_value']['field'] = 'field_issue_status_value';
+  $handler->display->display_options['filters']['field_issue_status_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_issue_status_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_issue_status_value']['expose']['operator_id'] = 'field_issue_status_value_op';
+  $handler->display->display_options['filters']['field_issue_status_value']['expose']['label'] = 'Status';
+  $handler->display->display_options['filters']['field_issue_status_value']['expose']['operator'] = 'field_issue_status_value_op';
+  $handler->display->display_options['filters']['field_issue_status_value']['expose']['identifier'] = 'field_issue_status_value';
+  $handler->display->display_options['filters']['field_issue_status_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    4 => 0,
+    5 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: Priority (field_issue_priority) */
+  $handler->display->display_options['filters']['field_issue_priority_value']['id'] = 'field_issue_priority_value';
+  $handler->display->display_options['filters']['field_issue_priority_value']['table'] = 'field_data_field_issue_priority';
+  $handler->display->display_options['filters']['field_issue_priority_value']['field'] = 'field_issue_priority_value';
+  $handler->display->display_options['filters']['field_issue_priority_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_issue_priority_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_issue_priority_value']['expose']['operator_id'] = 'field_issue_priority_value_op';
+  $handler->display->display_options['filters']['field_issue_priority_value']['expose']['label'] = 'Priority';
+  $handler->display->display_options['filters']['field_issue_priority_value']['expose']['operator'] = 'field_issue_priority_value_op';
+  $handler->display->display_options['filters']['field_issue_priority_value']['expose']['identifier'] = 'field_issue_priority_value';
+  $handler->display->display_options['filters']['field_issue_priority_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    4 => 0,
+    5 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: % Done (field_issue_done) */
+  $handler->display->display_options['filters']['field_issue_done_value']['id'] = 'field_issue_done_value';
+  $handler->display->display_options['filters']['field_issue_done_value']['table'] = 'field_data_field_issue_done';
+  $handler->display->display_options['filters']['field_issue_done_value']['field'] = 'field_issue_done_value';
+  $handler->display->display_options['filters']['field_issue_done_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_issue_done_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_issue_done_value']['expose']['operator_id'] = 'field_issue_done_value_op';
+  $handler->display->display_options['filters']['field_issue_done_value']['expose']['label'] = '% Done';
+  $handler->display->display_options['filters']['field_issue_done_value']['expose']['operator'] = 'field_issue_done_value_op';
+  $handler->display->display_options['filters']['field_issue_done_value']['expose']['identifier'] = 'field_issue_done_value';
+  $handler->display->display_options['filters']['field_issue_done_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    4 => 0,
+    5 => 0,
+    3 => 0,
+  );
   $handler->display->display_options['path'] = 'projects/%/issues';
 
   /* Display: Issues block */
