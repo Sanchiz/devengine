@@ -253,6 +253,22 @@ function devengine_dashboard_views_default_views() {
   $handler->display->display_options['arguments']['field_issue_project_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_issue_project_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_issue_project_target_id']['summary_options']['items_per_page'] = '25';
+
+  /* Display: User issues block */
+  $handler = $view->new_display('block', 'User issues block', 'user_issues_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'User issues';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Assigned (field_issue_assigned) */
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['id'] = 'field_issue_assigned_target_id';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['table'] = 'field_data_field_issue_assigned';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['field'] = 'field_issue_assigned_target_id';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['default_argument_type'] = 'user';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['default_argument_options']['user'] = FALSE;
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_issue_assigned_target_id']['summary_options']['items_per_page'] = '25';
   $export['issues_dashboard'] = $view;
 
   $view = new view();

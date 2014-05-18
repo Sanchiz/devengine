@@ -83,5 +83,40 @@ function devengine_core_context_default_contexts() {
   t('devengine');
   $export['devengine_sitewide'] = $context;
 
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'devengine_user';
+  $context->description = '';
+  $context->tag = 'devengine';
+  $context->conditions = array(
+    'user_page' => array(
+      'values' => array(
+        'view' => 'view',
+      ),
+      'options' => array(
+        'mode' => 'all',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-188b419607f64b18618ba2b0220c9ec1' => array(
+          'module' => 'views',
+          'delta' => '188b419607f64b18618ba2b0220c9ec1',
+          'region' => 'content',
+          'weight' => '5',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('devengine');
+  $export['devengine_user'] = $context;
+
   return $export;
 }
