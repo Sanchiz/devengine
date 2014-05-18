@@ -228,8 +228,8 @@ function devengine_dashboard_views_default_views() {
   );
   $handler->display->display_options['path'] = 'projects/%/issues';
 
-  /* Display: Issues block */
-  $handler = $view->new_display('block', 'Issues block', 'issues_block');
+  /* Display: Latest project issues block */
+  $handler = $view->new_display('block', 'Latest project issues block', 'latest_project_issues_block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Latest issues';
   $handler->display->display_options['defaults']['use_more'] = FALSE;

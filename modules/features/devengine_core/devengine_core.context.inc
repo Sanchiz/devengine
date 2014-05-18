@@ -29,9 +29,9 @@ function devengine_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-issues_dashboard-issues_block' => array(
+        'views-00c06f6441585a9aa4855feee2f5b2e5' => array(
           'module' => 'views',
-          'delta' => 'issues_dashboard-issues_block',
+          'delta' => '00c06f6441585a9aa4855feee2f5b2e5',
           'region' => 'content',
           'weight' => '1',
         ),
