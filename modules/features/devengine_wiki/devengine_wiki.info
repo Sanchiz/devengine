@@ -4,6 +4,7 @@ core = 7.x
 package = Devengine
 dependencies[] = book
 dependencies[] = context
+dependencies[] = devengine_core
 dependencies[] = ctools
 dependencies[] = strongarm
 features[context][] = devengine_wiki

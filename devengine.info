@@ -48,3 +48,4 @@ dependencies[] = pathauto
 dependencies[] = devengine_core
 dependencies[] = devengine_dashboard
 dependencies[] = devengine_wiki
+dependencies[] = devengine_environment
