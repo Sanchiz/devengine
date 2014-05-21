@@ -1,0 +1,5 @@
+name = Devengine environment
+description = Provides different environments for projects.
+core = 7.x
+package = Devengine
+dependencies[] = devengine_core
