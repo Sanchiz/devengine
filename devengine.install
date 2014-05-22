@@ -179,4 +179,7 @@ function devengine_install() {
 
   // Rebuild node access.
   node_access_rebuild(TRUE);
+
+  // On the wiki page show only book pages.
+  variable_set('book_block_mode', 'book pages');
 }
