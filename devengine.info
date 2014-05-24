@@ -43,6 +43,7 @@ dependencies[] = acl
 dependencies[] = diff
 dependencies[] = context
 dependencies[] = pathauto
+dependencies[] = quicktabs
 
 ; Dev Engine specific modules.
 dependencies[] = devengine_core

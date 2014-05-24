@@ -37,6 +37,9 @@ projects[pathauto][version] = 1.2
 projects[pathauto][subdir] = "contrib"
 projects[field_group][version] = 1.3
 projects[field_group][subdir] = "contrib"
+projects[quicktabs][version] = 3.6
+projects[quicktabs][subdir] = "contrib"
+
 
 ; Themes
 projects[omage] = "4.2"
