@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the devengine_environment module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function devengine_environment_schema() {
+  $schema['devengine_environment'] = array(
+    'description' => 'Stores environment configurations for projects.',
+    'fields' => array(
+      'project_id' => array(
+        'description' => 'The project id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'Type of the environment.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'repository' => array(
+        'description' => 'Path to repository.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('project_id'),
+  );
+  return $schema;
+}
