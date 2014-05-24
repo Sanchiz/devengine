@@ -3,11 +3,11 @@ api = 2
 core = 7.28
 
 ; Contributed modules.
-projects[views][version] = 3.7
+projects[views][version] = 3.8
 projects[views][subdir] = "contrib"
 projects[ctools][version] = 1.4
 projects[ctools][subdir] = "contrib"
-projects[entity][version] = 1.3
+projects[entity][version] = 1.5
 projects[entity][subdir] = "contrib"
 projects[entityreference][version] = 1.1
 projects[entityreference][subdir] = "contrib"
