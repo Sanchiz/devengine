@@ -3,3 +3,31 @@
  * @file
  * Provides different environments for projects.
  */
+
+/**
+ * Implements hook_menu().
+ */
+function devengine_environment_menu() {
+  $items = array();
+
+  $items['projects/%node/environment'] = array(
+    'title' => 'Environments',
+    'access callback' => TRUE,
+    'page callback' => 'devengine_environment_project_page',
+    'page arguments' => array(1),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+
+/**
+ * Callback for environments page.
+ */
+function devengine_environment_project_page($node) {
+  // @TODO content for repository page.
+  // module_load_include('inc', 'gb');
+  // gb_summary('admin/srm', '/Users/sanchiz/Sites/devengine.dev/profiles/devengine/.git');
+  return '';
+}

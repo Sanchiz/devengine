@@ -116,8 +116,16 @@ function devengine_core_project_menu_markup() {
     $items[] = l(t('New issue'), 'projects/' . $node->nid . '/new-issue');
     // @TODO latest activity.
     //$items[] = l(t('Latest Activity'), 'projects/' . $node->nid . '/activity');
-    $items[] = l(t('Wiki'), 'projects/' . $node->nid . '/wiki');
-    //$items[] = l(t('Repository'), 'projects/' . $node->nid . '/repository');
+
+    // Add wiki link.
+    if (module_exists('devengine_wiki')) {
+      $items[] = l(t('Wiki'), 'projects/' . $node->nid . '/wiki');
+    }
+
+    // Add repository link.
+    if (module_exists('devengine_environment')) {
+      $items[] = l(t('Repository'), 'projects/' . $node->nid . '/environment');
+    }
     return theme('item_list', array('items' => $items));
   }
   return FALSE;
