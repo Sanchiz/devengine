@@ -20,21 +20,21 @@ function devengine_environment_quicktabs_default_quicktabs() {
   $quicktabs->title = 'Environments';
   $quicktabs->tabs = array(
     0 => array(
-      'bid' => 'comment_delta_recent',
+      'bid' => 'devengine_environment_delta_de_development',
       'hide_title' => 1,
       'title' => 'Development',
       'weight' => '-100',
       'type' => 'block',
     ),
     1 => array(
-      'bid' => 'comment_delta_recent',
+      'bid' => 'devengine_environment_delta_de_staging',
       'hide_title' => 1,
       'title' => 'Staging',
       'weight' => '-99',
       'type' => 'block',
     ),
     2 => array(
-      'bid' => 'comment_delta_recent',
+      'bid' => 'devengine_environment_delta_de_production',
       'hide_title' => 1,
       'title' => 'Production',
       'weight' => '-98',

@@ -18,22 +18,173 @@ function devengine_environment_menu() {
 
   $items['projects/%node/environment'] = array(
     'title' => 'Environments',
-    'access callback' => TRUE,
+    'access callback' => 'devengine_environment_access_callback',
+    'access arguments' => array(1),
     'page callback' => 'devengine_environment_project_page',
     'page arguments' => array(1),
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['projects/%node/environment/settings'] = array(
+    'title' => 'Environments',
+    'access callback' => 'devengine_environment_access_callback',
+    'access arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('devengine_environment_repository_settings', 1),
     'type' => MENU_CALLBACK,
   );
 
   return $items;
 }
 
+/**
+ * Implements hook_block_info().
+ */
+function devengine_environment_block_info() {
+  $blocks = array();
+
+  $blocks['de_development'] = array(
+    'info' => t('Devengine environment: development'),
+  );
+
+  $blocks['de_staging'] = array(
+    'info' => t('Devengine environment: staging'),
+  );
+
+  $blocks['de_production'] = array(
+    'info' => t('Devengine environment: production'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function devengine_environment_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'de_development':
+      $block['subject'] = t('Development');
+      $block['content'] = devengine_environment_git_log('development');
+      break;
+
+    case 'de_staging':
+      $block['subject'] = t('Staging');
+      $block['content'] = devengine_environment_git_log('staging');
+      break;
+
+    case 'de_production':
+      $block['subject'] = t('Production');
+      $block['content'] = devengine_environment_git_log('production');
+      break;
+
+  }
+
+  return $block;
+}
+
+/**
+ * Access callback for environments page.
+ */
+function devengine_environment_access_callback($node) {
+  if ($node->type == 'project') {
+    return TRUE;
+  }
+  return FALSE;
+}
 
 /**
  * Callback for environments page.
  */
 function devengine_environment_project_page($node) {
-  // @TODO content for repository page.
-  // module_load_include('inc', 'gb');
-  // gb_summary('admin/srm', '/Users/sanchiz/Sites/devengine.dev/profiles/devengine/.git');
+  $dev_config = devengine_environment_load_config($node->nid, 'development');
+  if (empty($dev_config)) {
+    drupal_set_message(t('Please !link the repository for this project.', array('!link' => l(t('configure'), 'projects/' . $node->nid . '/environment/settings'))), 'warning');
+  }
   return '';
+}
+
+/**
+ * Repository settings form.
+ */
+function devengine_environment_repository_settings($form, &$form_state, $node) {
+  $form['development_environment'] = array(
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#title' => t('Development environment'),
+    '#description' => t('Path to your git repository for development environment'),
+  );
+  $form['staging_environment'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Staging environment'),
+    '#description' => t('Path to your git repository for staging environment'),
+  );
+  $form['production_environment'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Production environment'),
+    '#description' => t('Path to your git repository for production environment'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  return $form;
+}
+
+/**
+ * Update/Insert record in devengine_environment table.
+ */
+function devengine_environment_update_config($project_id, $type, $repository) {
+  db_merge('devengine_environment')
+    ->key(array('project_id' => $project_id, 'type' => $type))
+    ->fields(
+      array(
+        'project_id' => $project_id,
+        'type' => $type,
+        'repository' => $repository,
+      )
+    )
+    ->execute();
+}
+
+/**
+ * Load config for environment.
+ */
+function devengine_environment_load_config($project_id, $type = FALSE) {
+  $query = db_select('devengine_environment', 'e');
+  $query->fields('e');
+  $query->condition('e.project_id', $project_id);
+
+  // Filter by environment type.
+  if (!empty($type)) {
+    $query->condition('e.type', $type);
+  }
+
+  return $query->execute()
+    ->fetchAssoc();
+}
+
+/**
+ * Remove environment config.
+ */
+function devengine_environment_remove_config($project_id) {
+  db_delete('devengine_environment')
+    ->condition('project_id', $project_id)
+    ->execute();
+}
+
+/**
+ * Return git log markup.
+ */
+function devengine_environment_git_log($type) {
+  $node = menu_get_object('node');
+  if ($node && $node->type == 'project') {
+    // @TODO content for repository page.
+    // module_load_include('inc', 'gb');
+    // gb_summary('admin/srm', '/Users/sanchiz/Sites/devengine.dev/profiles/devengine/.git');
+    return '';
+  }
+  return FALSE;
 }
