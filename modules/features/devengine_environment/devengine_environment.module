@@ -110,27 +110,48 @@ function devengine_environment_project_page($node) {
  * Repository settings form.
  */
 function devengine_environment_repository_settings($form, &$form_state, $node) {
+  $config = devengine_environment_load_config($node->nid);
   $form['development_environment'] = array(
     '#type' => 'textfield',
     '#required' => TRUE,
     '#title' => t('Development environment'),
     '#description' => t('Path to your git repository for development environment'),
+    '#default_value' => !empty($config['development']->repository) ? $config['development']->repository : '',
   );
   $form['staging_environment'] = array(
     '#type' => 'textfield',
     '#title' => t('Staging environment'),
     '#description' => t('Path to your git repository for staging environment'),
+    '#default_value' => !empty($config['staging']->repository) ? $config['staging']->repository : '',
   );
   $form['production_environment'] = array(
     '#type' => 'textfield',
     '#title' => t('Production environment'),
     '#description' => t('Path to your git repository for production environment'),
+    '#default_value' => !empty($config['production']->repository) ? $config['production']->repository : '',
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
   );
   return $form;
+}
+
+/**
+ * Submit callback for repository settings form.
+ */
+function devengine_environment_repository_settings_submit($form, &$form_state) {
+  $node = $form_state['build_info']['args'][0];
+  if (!empty($form_state['values']['development_environment'])) {
+    devengine_environment_update_config($node->nid, 'development', $form_state['values']['development_environment']);
+  }
+  if (!empty($form_state['values']['staging_environment'])) {
+    devengine_environment_update_config($node->nid, 'staging', $form_state['values']['staging_environment']);
+  }
+  if (!empty($form_state['values']['production_environment'])) {
+    devengine_environment_update_config($node->nid, 'production', $form_state['values']['production_environment']);
+  }
+  $form_state['redirect'] = 'projects/' . $node->nid . '/environment';
 }
 
 /**
@@ -162,8 +183,13 @@ function devengine_environment_load_config($project_id, $type = FALSE) {
     $query->condition('e.type', $type);
   }
 
-  return $query->execute()
-    ->fetchAssoc();
+  if (!empty($type)) {
+    $config = $query->execute()->fetchObject();
+  }
+  else {
+    $config = $query->execute()->fetchAllAssoc('type');
+  }
+  return $config;
 }
 
 /**

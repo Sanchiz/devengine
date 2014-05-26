@@ -32,7 +32,7 @@ function devengine_environment_schema() {
         'default' => '',
       ),
     ),
-    'primary key' => array('project_id'),
+    'primary key' => array('project_id', 'type'),
   );
   return $schema;
 }
