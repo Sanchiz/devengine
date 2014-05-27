@@ -39,7 +39,8 @@ projects[field_group][version] = 1.3
 projects[field_group][subdir] = "contrib"
 projects[quicktabs][version] = 3.6
 projects[quicktabs][subdir] = "contrib"
-
+projects[gitbrowser][version] = 1.0-alpha1
+projects[gitbrowser][subdir] = "contrib"
 
 ; Themes
 projects[omage] = "4.2"
