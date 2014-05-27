@@ -207,10 +207,22 @@ function devengine_environment_remove_config($project_id) {
 function devengine_environment_git_log($type) {
   $node = menu_get_object('node');
   if ($node && $node->type == 'project') {
-    // @TODO content for repository page.
-    // module_load_include('inc', 'gb');
-    // gb_summary('admin/srm', '/Users/sanchiz/Sites/devengine.dev/profiles/devengine/.git');
-    return '';
+    $config = devengine_environment_load_config($node->nid, $type);
+    $output = '';
+    if (realpath($config->repository)) {
+      module_load_include('inc', 'gb');
+      $output .= gb_summary('admin/srm', $config->repository);
+    }
+    else {
+      $output .= '<p>' . t("Set up your local directory.") . '</p>';
+      $output .= '<p>' . t("Set up Git on your machine if you haven't already.") . '</p>';
+      $output .= '<pre>';
+      $output .= '<span>' . t('mkdir @repository', array('@repository' => $config->repository)) . '</span>';
+      $output .= '<span>' . t('cd @repository', array('@repository' => $config->repository)) . '</span>';
+      $output .= '<span>' . t('git init') . '</span>';
+      $output .= '</pre>';
+    }
+    return $output;
   }
   return FALSE;
 }
