@@ -34,6 +34,15 @@ function devengine_environment_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['projects/%node/environment/%/pull'] = array(
+    'title' => 'Pull code',
+    'access callback' => 'devengine_environment_access_callback',
+    'access arguments' => array(1),
+    'page callback' => 'devengine_environment_pull_code',
+    'page arguments' => array(1, 3),
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
@@ -210,6 +219,12 @@ function devengine_environment_git_log($type) {
     $config = devengine_environment_load_config($node->nid, $type);
     $output = '';
     if (realpath($config->repository)) {
+      if ($type == 'staging') {
+        $output .= l(t('Pull code from development'), 'projects/' . $node->nid . '/environment/' . $type . '/pull');
+      }
+      if ($type == 'production') {
+        $output .= l(t('Pull code from staging'), 'projects/' . $node->nid . '/environment/' . $type . '/pull');
+      }
       module_load_include('inc', 'gb');
       $output .= gb_summary('admin/srm', $config->repository . '/.git');
     }
@@ -225,4 +240,34 @@ function devengine_environment_git_log($type) {
     return $output;
   }
   return FALSE;
+}
+
+/**
+ * Page callback for pull code page.
+ */
+function devengine_environment_pull_code($node, $type) {
+  $query = array();
+  if ($type == 'staging') {
+    devengine_environment_pull_code_for_environment($node, $type);
+    $query = array('query' => array('qt-environments' => '1'), 'fragment' => 'qt-environments');
+  }
+
+  if ($type == 'production') {
+    devengine_environment_pull_code_for_environment($node, $type);
+    $query = array('query' => array('qt-environments' => '2'), 'fragment' => 'qt-environments');
+  }
+  drupal_goto('projects/' . $node->nid . '/environment', $query);
+}
+
+/**
+ * Run git pull for environment.
+ */
+function devengine_environment_pull_code_for_environment($node, $type) {
+  $output = '';
+  $config = devengine_environment_load_config($node->nid, $type);
+  module_load_include('inc', 'gb');
+  gb_real_git('pull 2>&1 origin master', $output, realpath($config->repository . '/.git'));
+  foreach ($output as $message) {
+    drupal_set_message($message);
+  }
 }
