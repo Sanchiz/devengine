@@ -211,7 +211,7 @@ function devengine_environment_git_log($type) {
     $output = '';
     if (realpath($config->repository)) {
       module_load_include('inc', 'gb');
-      $output .= gb_summary('admin/srm', $config->repository);
+      $output .= gb_summary('admin/srm', $config->repository . '/.git');
     }
     else {
       $output .= '<p>' . t("Set up your local directory.") . '</p>';
