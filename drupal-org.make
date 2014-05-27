@@ -43,4 +43,4 @@ projects[gitbrowser][version] = 1.0-alpha1
 projects[gitbrowser][subdir] = "contrib"
 
 ; Themes
-projects[omage] = "4.2"
+projects[omega] = "4.2"
