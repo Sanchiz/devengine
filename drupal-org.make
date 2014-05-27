@@ -1,6 +1,9 @@
 ; devengine demo make file
 api = 2
-core = 7.28
+core = 7.x
+
+projects[drupal][type] = core
+projects[drupal][version] = 7.28
 
 ; Contributed modules.
 projects[views][version] = 3.8
