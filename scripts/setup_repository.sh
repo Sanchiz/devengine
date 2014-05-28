@@ -16,6 +16,7 @@ cd $1
 git --bare init
 cd $2
 git init
+git config core.fileMode false
 touch test
 git add .
 git commit -m "Initial commit."
@@ -23,9 +24,11 @@ git remote add origin $1
 git push origin master
 cd $3
 git init
+git config core.fileMode false
 git remote add origin $1
 git pull origin master
 cd $4
 git init
+git config core.fileMode false
 git remote add origin $1
 git pull origin master
