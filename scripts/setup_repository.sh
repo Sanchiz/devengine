@@ -3,9 +3,9 @@
 : '
 Example of using:
 
-sh setup_repository.sh /opt/git/my_project /home/vagrant/sites/instance1development /home/vagrant/sites/instance1staging /home/vagrant/sites/instance1production
+sh setup_repository.sh /opt/git/instance1 /home/vagrant/sites/instance1development /home/vagrant/sites/instance1staging /home/vagrant/sites/instance1production
 
-/opt/git/my_project - repository without a working directory
+/opt/git/instance1 - repository without a working directory
 /home/vagrant/sites/instance1development - development repository
 /home/vagrant/sites/instance1staging - staging repository
 /home/vagrant/sites/instance1production - production repository
