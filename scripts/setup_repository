@@ -39,6 +39,15 @@ function create_repository_initial {
   git push origin master
 }
 
+function create_hook {
+  touch $1/hooks/post-receive
+  echo "#!/bin/sh
+cd $2
+env -i git pull origin master
+echo Auto-checkout on development successful." > $1/hooks/post-receive
+  chmod a+x $1/hooks/post-receive
+}
+
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo "You should enter 3 arguments."
     echo "Example: ./setup_repository /opt/git/instance1 /sites/development /sites/staging /sites/production"
@@ -56,6 +65,7 @@ else
   select opt in $OPTIONS; do
     if [ "$opt" = "Yes" ]; then
       create_bare_repository $1
+      create_hook $1 $2
       break
     elif [ "$opt" = "No" ]; then
       exit
