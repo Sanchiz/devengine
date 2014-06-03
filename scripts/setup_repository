@@ -3,7 +3,8 @@
 : '
 Example of using:
 
-sh setup_repository.sh /opt/git/instance1 /home/vagrant/sites/instance1development /home/vagrant/sites/instance1staging /home/vagrant/sites/instance1production
+sudo chmod a+w setup_repository
+./setup_repository /opt/git/instance1 /home/vagrant/sites/instance1development /home/vagrant/sites/instance1staging /home/vagrant/sites/instance1production
 
 /opt/git/instance1 - repository without a working directory
 /home/vagrant/sites/instance1development - development repository
@@ -40,7 +41,7 @@ function create_repository_initial {
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo "You should enter 3 arguments."
-    echo "Example: sh setup_repository.sh /opt/git/instance1 /sites/development /sites/staging /sites/production"
+    echo "Example: ./setup_repository /opt/git/instance1 /sites/development /sites/staging /sites/production"
     exit
 fi
 
