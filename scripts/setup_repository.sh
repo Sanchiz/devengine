@@ -11,24 +11,109 @@ sh setup_repository.sh /opt/git/instance1 /home/vagrant/sites/instance1developme
 /home/vagrant/sites/instance1production - production repository
 '
 
-mkdir -p $1
-cd $1
-git --bare init
-cd $2
-git init
-git config core.fileMode false
-touch test
-git add .
-git commit -m "Initial commit."
-git remote add origin $1
-git push origin master
-cd $3
-git init
-git config core.fileMode false
-git remote add origin $1
-git pull origin master
-cd $4
-git init
-git config core.fileMode false
-git remote add origin $1
-git pull origin master
+function create_bare_repository {
+  mkdir -p $1
+  cd $1
+  git --bare init
+}
+
+function create_repository {
+  mkdir $1
+  cd $1
+  git init
+  git config core.fileMode false
+  git remote add origin $2
+  git pull origin master
+}
+
+function create_repository_initial {
+  mkdir $1
+  cd $1
+  git init
+  git config core.fileMode false
+  touch test
+  git add .
+  git commit -m "Initial commit."
+  git remote add origin $2
+  git push origin master
+}
+
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "You should enter 3 arguments."
+    echo "Example: sh setup_repository.sh /opt/git/instance1 /sites/development /sites/staging /sites/production"
+    exit
+fi
+
+OPTIONS="Yes No"
+
+# Create bare repository.
+if [ -d "$1" ]; then
+  echo "Directory $1 already exist"
+  exit
+else
+  echo "Create repository without a working directory at $1?"
+  select opt in $OPTIONS; do
+    if [ "$opt" = "Yes" ]; then
+      create_bare_repository $1
+      break
+    elif [ "$opt" = "No" ]; then
+      exit
+    else
+      echo "Bad option"
+    fi
+  done
+fi
+
+if [ -d "$2" ]; then
+  echo "Directory $2 already exist"
+  exit
+else
+  echo "Create empty repository for development at $2?"
+  select opt in $OPTIONS; do
+    if [ "$opt" = "Yes" ]; then
+      create_repository_initial $2 $1
+      break
+    elif [ "$opt" = "No" ]; then
+      exit
+    else
+      echo "Bad option"
+    fi
+  done
+fi
+
+if [ -d "$3" ]; then
+  echo "Directory $3 already exist"
+  exit
+else
+  echo "Create empty repository for staging at $3?"
+  select opt in $OPTIONS; do
+    if [ "$opt" = "Yes" ]; then
+      create_repository $3 $1
+      break
+    elif [ "$opt" = "No" ]; then
+      exit
+    else
+      echo "Bad option"
+    fi
+  done
+fi
+
+if [ -d "$4" ]; then
+  echo "Directory $4 already exist"
+  exit
+else
+  echo "Create empty repository for production at $4?"
+  select opt in $OPTIONS; do
+    if [ "$opt" = "Yes" ]; then
+      create_repository $4 $1
+      break
+    elif [ "$opt" = "No" ]; then
+      exit
+    else
+      echo "Bad option"
+    fi
+  done
+fi
+
+echo "Successful!"
+exit
