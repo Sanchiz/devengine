@@ -64,6 +64,7 @@ else
   done
 fi
 
+# Create development repository.
 if [ -d "$2" ]; then
   echo "Directory $2 already exist"
   exit
@@ -81,6 +82,7 @@ else
   done
 fi
 
+# Create staging repository.
 if [ -d "$3" ]; then
   echo "Directory $3 already exist"
   exit
@@ -98,6 +100,7 @@ else
   done
 fi
 
+# Create production repository.
 if [ -d "$4" ]; then
   echo "Directory $4 already exist"
   exit
