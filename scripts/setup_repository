@@ -3,7 +3,7 @@
 : '
 Example of using:
 
-sudo chmod a+w setup_repository
+sudo chmod a+x setup_repository
 ./setup_repository /opt/git/instance1 /home/vagrant/sites/instance1development /home/vagrant/sites/instance1staging /home/vagrant/sites/instance1production
 
 /opt/git/instance1 - repository without a working directory
