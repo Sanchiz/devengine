@@ -1,0 +1,31 @@
+#block-quicktabs-environments {
+  .block__title {
+    display: none;
+  }
+  #quicktabs-environments {
+    #quicktabs-container-environments {
+      background: $white;
+      padding: 20px;
+      border: 1px solid $gray;
+    }
+    ul.quicktabs-tabs {
+      margin: 0;
+      padding: 0;
+      li {
+        border: 1px solid $gray;
+        border-bottom: 1px solid $white;
+        background: $gray;
+        padding: 13px 15px;
+        font-size: 160%;
+        &.active {
+          background: $white;
+        }
+        a {
+          color: $black;
+          line-height: 50px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

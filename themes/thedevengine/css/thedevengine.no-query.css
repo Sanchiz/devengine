@@ -203,6 +203,34 @@ header.l-header {
         #block-devengine-core-devengine-core-project-menu ul li a:hover {
           border-top: 5px solid #29aae1; }
 
+/* line 2, ../sass/components/blocks/_quicktabs-environments.scss */
+#block-quicktabs-environments .block__title {
+  display: none; }
+/* line 6, ../sass/components/blocks/_quicktabs-environments.scss */
+#block-quicktabs-environments #quicktabs-environments #quicktabs-container-environments {
+  background: white;
+  padding: 20px;
+  border: 1px solid #adadad; }
+/* line 11, ../sass/components/blocks/_quicktabs-environments.scss */
+#block-quicktabs-environments #quicktabs-environments ul.quicktabs-tabs {
+  margin: 0;
+  padding: 0; }
+  /* line 14, ../sass/components/blocks/_quicktabs-environments.scss */
+  #block-quicktabs-environments #quicktabs-environments ul.quicktabs-tabs li {
+    border: 1px solid #adadad;
+    border-bottom: 1px solid white;
+    background: #adadad;
+    padding: 13px 15px;
+    font-size: 160%; }
+    /* line 20, ../sass/components/blocks/_quicktabs-environments.scss */
+    #block-quicktabs-environments #quicktabs-environments ul.quicktabs-tabs li.active {
+      background: white; }
+    /* line 23, ../sass/components/blocks/_quicktabs-environments.scss */
+    #block-quicktabs-environments #quicktabs-environments ul.quicktabs-tabs li a {
+      color: #222222;
+      line-height: 50px;
+      text-decoration: none; }
+
 /* line 1, ../sass/components/blocks/_system-user-menu.scss */
 #block-system-user-menu {
   width: 49.15254%;
