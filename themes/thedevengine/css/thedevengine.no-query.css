@@ -230,6 +230,21 @@ header.l-header {
       color: #222222;
       line-height: 50px;
       text-decoration: none; }
+/* line 31, ../sass/components/blocks/_quicktabs-environments.scss */
+#block-quicktabs-environments .pull-button {
+  border: 1px solid #adadad;
+  background: #adadad;
+  font-size: 120%;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  margin: 15px 0;
+  width: 300px;
+  display: block;
+  text-align: center; }
+/* line 43, ../sass/components/blocks/_quicktabs-environments.scss */
+#block-quicktabs-environments .heads, #block-quicktabs-environments .remotes, #block-quicktabs-environments .gb_details, #block-quicktabs-environments .gb_diff, #block-quicktabs-environments .gb_tag {
+  display: none; }
 
 /* line 1, ../sass/components/blocks/_system-user-menu.scss */
 #block-system-user-menu {

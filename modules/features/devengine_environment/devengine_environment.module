@@ -221,10 +221,10 @@ function devengine_environment_git_log($type) {
       $output = '';
       if (realpath($config->repository)) {
         if ($type == 'staging') {
-          $output .= l(t('Pull code from development'), 'projects/' . $node->nid . '/environment/' . $type . '/pull');
+          $output .= l(t('Pull code from development'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
         }
         if ($type == 'production') {
-          $output .= l(t('Pull code from staging'), 'projects/' . $node->nid . '/environment/' . $type . '/pull');
+          $output .= l(t('Pull code from staging'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
         }
         module_load_include('inc', 'gb');
         $output .= gb_summary('admin/srm', $config->repository . '/.git');

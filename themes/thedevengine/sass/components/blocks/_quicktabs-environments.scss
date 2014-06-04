@@ -28,4 +28,19 @@
       }
     }
   }
+  .pull-button {
+    border: 1px solid $gray;
+    background: $gray;
+    font-size: 120%;
+    text-decoration: none;
+    color: $white;
+    padding: 10px;
+    margin: 15px 0;
+    width: 300px;
+    display: block;
+    text-align: center;
+  }
+  .heads, .remotes, .gb_details, .gb_diff, .gb_tag {
+    display: none;
+  }
 }
