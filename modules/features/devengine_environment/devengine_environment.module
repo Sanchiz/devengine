@@ -217,29 +217,27 @@ function devengine_environment_git_log($type) {
   $node = menu_get_object('node');
   if ($node && $node->type == 'project') {
     $config = devengine_environment_load_config($node->nid, $type);
-    if (!empty($config)) {
-      $output = '';
-      if (realpath($config->repository)) {
-        if ($type == 'staging') {
-          $output .= l(t('Pull code from development'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
-        }
-        if ($type == 'production') {
-          $output .= l(t('Pull code from staging'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
-        }
-        module_load_include('inc', 'gb');
-        $output .= gb_summary('admin/srm', $config->repository . '/.git');
+    $output = '';
+    if (!empty($config->repository) && realpath($config->repository)) {
+      if ($type == 'staging') {
+        $output .= l(t('Pull code from development'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
       }
-      else {
-        $output .= '<p>' . t("Set up your local directory.") . '</p>';
-        $output .= '<p>' . t("Set up Git on your machine if you haven't already.") . '</p>';
-        $output .= '<pre>';
-        $output .= '<span>' . t('mkdir @repository', array('@repository' => $config->repository)) . '</span>';
-        $output .= '<span>' . t('cd @repository', array('@repository' => $config->repository)) . '</span>';
-        $output .= '<span>' . t('git init') . '</span>';
-        $output .= '</pre>';
+      if ($type == 'production') {
+        $output .= l(t('Pull code from staging'), 'projects/' . $node->nid . '/environment/' . $type . '/pull', array('attributes' => array('class' => 'pull-button')));
       }
-      return $output;
+      module_load_include('inc', 'gb');
+      $output .= gb_summary('admin/srm', $config->repository . '/.git');
     }
+    else {
+      $output .= '<p>' . t("Set up your local directory.") . '</p>';
+      $output .= '<p>' . t("Set up Git on your machine if you haven't already.") . '</p>';
+      $output .= '<pre>';
+      $output .= '<span>' . t('mkdir @repository', array('@repository' => $config->repository)) . '</span>';
+      $output .= '<span>' . t('cd @repository', array('@repository' => $config->repository)) . '</span>';
+      $output .= '<span>' . t('git init') . '</span>';
+      $output .= '</pre>';
+    }
+    return $output;
   }
   return FALSE;
 }
