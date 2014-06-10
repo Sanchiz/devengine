@@ -182,4 +182,7 @@ function devengine_install() {
 
   // On the wiki page show only book pages.
   variable_set('book_block_mode', 'book pages');
+
+  // Error level by default.
+  variable_set('error_level', 0);
 }
