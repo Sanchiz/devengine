@@ -84,8 +84,9 @@ function devengine_core_block_view($delta = '') {
 function devengine_core_project_menu_markup() {
   // @TODO need a way to add links via UI.
   $nid = arg(1);
+  $node = FALSE;
   $build_menu = FALSE;
-  if (!empty($nid) && is_numeric($nid)) {
+  if (!empty($nid) && is_numeric($nid) && (arg(0) == 'node' || arg(0) == 'projects')) {
     $node_arg = node_load($nid);
     if (!empty($node_arg->type) && $node_arg->type == 'project') {
       $build_menu = TRUE;
