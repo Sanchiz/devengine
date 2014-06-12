@@ -19,7 +19,7 @@ function thedevengine_breadcrumb($variables) {
     $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
 
     // Override Drupal core breadcrumb item imploding (no arrow).
-    $output .= '<ul class="breadcrumb"><li>' . implode('</li><span class="breadcrumbs-separator"></span><li>', $breadcrumb) . '</li></ul>';
+    $output .= '<ul class="breadcrumb"><li>' . implode('</li><li>', $breadcrumb) . '</li></ul>';
     return $output;
   }
 }
