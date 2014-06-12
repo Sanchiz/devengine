@@ -20,4 +20,16 @@ function thedevengine_preprocess_page(&$variables) {
   else {
     $variables['classes_array'][] = 'no-sidebars';
   }
+
+  // Set breadcrumbs.
+  $breadcrumbs = array(
+    l(t('Home'), '<front>'),
+  );
+  if (!empty($variables['node']->type) && ($variables['node']->type == 'issue' || $variables['node']->type == 'book' || $variables['node']->type == 'project')) {
+    $breadcrumbs[] = l(t('Projects'), 'projects');
+  }
+  if (arg(0) == 'projects' && arg(1) && !arg(2)) {
+    $breadcrumbs[] = l(t('Projects'), 'projects');
+  }
+  drupal_set_breadcrumb($breadcrumbs);
 }

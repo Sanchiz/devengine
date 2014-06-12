@@ -136,7 +136,7 @@ function devengine_core_project_menu_markup() {
  * Title callback for new issue page.
  */
 function devengine_core_new_issue_title_callback($project) {
-
+  return t('New issue for @project_name project', array('@project_name' => $project->title));
 }
 
 /**
